@@ -16,6 +16,7 @@ import java.io.IOException;
 public class ResponseUtil {
 
     public static int getResponseStatus(Response response){
+
         return RestUtil.getResponseCode(response);
     }
 

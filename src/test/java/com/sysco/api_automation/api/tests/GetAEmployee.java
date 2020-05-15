@@ -27,26 +27,15 @@ public class GetAEmployee extends TestBase {
     @Test(description = "Get a single employee data", alwaysRun = true)
     public static void testGetProject() throws JSONException {
 
-       /*
-       Getting the project list as [{},{},]
-        */
-        Response projectList = Project.getRestAPISampleProjects();
-
-       /*
-       Get the value from one object
-        */
-        String actualDescription = ResponseUtil.getDataValueInDataArray(projectList.asString(), 1, "description");
-      /*
-      Map the response to object
-       */
-        ProjectModel projectModel = (ProjectModel) ResponseUtil.getDataObjectValueInDataArray(projectList.asString(), 1, ProjectModel.class);
-
-
+        Response projectList = Project.getQcenterProjects("1");
+        ProjectModel projectModel = (ProjectModel) ResponseUtil.getDataObjectValueInDataArray(projectList.asString(), 0, ProjectModel.class);
         softAssert.assertEquals(ResponseUtil.getStatus(projectList), StatusCodes.SUCCESS_200_CODE, "Status code should be 200");
         softAssert.assertEquals(projectModel.id, employeeData.id, "Should be equal");
         softAssert.assertEquals(projectModel.employee_name, employeeData.employee_name, "Should be equal");
         softAssert.assertEquals(projectModel.employee_salary, employeeData.employee_salary, "Should be equal");
         softAssert.assertEquals(projectModel.employee_age, employeeData.employee_age, "Should be equal");
         softAssert.assertEquals(projectModel.profile_image, employeeData.profile_image, "Should be equal");
+
+
     }
 }
