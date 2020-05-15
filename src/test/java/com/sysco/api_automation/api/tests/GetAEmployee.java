@@ -28,6 +28,7 @@ public class GetAEmployee extends TestBase {
     public static void testGetProject() throws JSONException {
 
         Response projectList = Project.getQcenterProjects("1");
+
         ProjectModel projectModel = (ProjectModel) ResponseUtil.getDataObjectValueInDataArray(projectList.asString(), 0, ProjectModel.class);
         softAssert.assertEquals(ResponseUtil.getStatus(projectList), StatusCodes.SUCCESS_200_CODE, "Status code should be 200");
         softAssert.assertEquals(projectModel.id, employeeData.id, "Should be equal");
